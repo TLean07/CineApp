@@ -1,7 +1,7 @@
 function PageNotFound() {
-    return ( 
-        <h1> Error 404 </h1>
-     );
+    return (  
+        <h1>Erro 404</h1>
+    );
 }
 
 export default PageNotFound;
