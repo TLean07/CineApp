@@ -16,8 +16,9 @@ function DetalhesFilmes(){
     return(
         <>
         <h1>Detalhes Filmes</h1>
-        <img src={`https://image.tmdb.org/t/p/w92/${filme.poster_path}`}/>
+        <img src={`https://image.tmdb.org/t/p/w1280/${filme.poster_path}`}/>
         <p>{filme.title}</p>
+        <p>{filme.vote_average}</p>
         </>
     );
 }
