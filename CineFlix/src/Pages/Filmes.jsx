@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Filmes() {
 
@@ -12,18 +13,19 @@ function Filmes() {
     return ( 
         <>
         <h1>Filmes</h1>
-        <div className="listaFilmes"></div>
+        <div className="listaFilmes flex flex-row gap-3 flex-wrap">
             {
                 filmes.map(
                     filme => (
                         <div className="card-filme" key={filme.id}>
+                        <img src={`https://image.tmdb.org/t/p/w92/${filme.poster_path}`}/>
                         <h1>{filme.title}</h1>
-                        <img src={`https://image.tmdb.org/t/p/w342/${filme.poster_path}`}/>
-                        <p>{filme.overview}</p>
+                        <Link to="" className="bg-purple-800">Saiba mais</Link>
                         </div>
                     )
                 )
             }
+        </div>
         </>
      );
 }
