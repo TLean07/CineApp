@@ -19,7 +19,7 @@ function Filmes() {
                     {filmes.map(filme => (
                         <div key={filme.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
                             <img className="w-full h-72 object-cover" src={`https://image.tmdb.org/t/p/w500/${filme.poster_path}`} alt={filme.title} />
-                            <div className="p-4">
+                            <div className="p-4">       
                                 <h3 className="text-xl font-semibold text-white mb-2">{filme.title}</h3>
                                 <Link to={`/filmes/${filme.id}`} className="text-purple-500 hover:text-purple-400 transition-colors duration-200">
                                     Saiba mais
