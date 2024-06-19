@@ -6,7 +6,7 @@ function Sobre() {
                 <div className="bg-gray-800 rounded-lg shadow-lg p-6">
                     <div className="flex flex-col md:flex-row items-center md:items-start">
                         <img 
-                            src="https://link-para-imagem-sobre.png" 
+                            src="https://play-lh.googleusercontent.com/WfwkqIpdZz3ABcDVYWY0VPh1YYHGVeezWAEXoQgO-BRRXd7lgu8OwvCwHCAaZnWcFA" 
                             alt="Sobre CineFlix" 
                             className="w-48 h-48 rounded-full mb-6 md:mb-0 md:mr-6 object-cover"
                         />
