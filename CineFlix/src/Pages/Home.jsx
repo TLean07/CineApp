@@ -3,17 +3,35 @@ import data from '../../artigos.json';
 
 function Home() {
     const [articles, setArticles] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         setArticles(data);
     }, []);
 
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+    const filteredArticles = articles.filter((article) =>
+        article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        article.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+
     return (
         <main className="bg-gray-900 min-h-screen p-10 pt-24">
             <div className="container mx-auto">
                 <h2 className="text-3xl font-bold text-white mb-6">Descubra nossos filmes</h2>
+                <input
+                    type="text"
+                    placeholder="Buscar artigos..."
+                    value={searchQuery}
+                    onChange={handleSearch}
+                    className="w-full p-2 mb-6 rounded bg-gray-800 border border-gray-600 text-white"
+                />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {articles.map((article) => (
+                    {filteredArticles.map((article) => (
                         <div key={article.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
                             <img className="w-full h-72 object-cover" src={article.image} alt={article.title} />
                             <div className="p-4">
