@@ -1,45 +1,43 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 function Contato() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState(''); // Estado para armazenar a mensagem de status
 
-    const handleSubmit = async (e) => {
+    function sendEmail(e) {
         e.preventDefault();
-        setStatus('Enviando...');
 
-        try {
-            const response = await fetch('/contato', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, message }),
-            });
-
-            if (response.ok) {
-                setStatus('Email enviado com sucesso!');
-                setName('');
-                setEmail('');
-                setMessage('');
-            } else {
-                const errorText = await response.text();
-                setStatus('Falha ao enviar o email: ' + errorText);
-            }
-        } catch (error) {
-            console.error('Erro na comunicação com o servidor:', error);
-            setStatus('Erro na comunicação com o servidor.');
+        if (name === '' || email === '' || message === '') {
+            setStatus("Preencha todos os campos");
+            return;
         }
-    };
+
+        const templateParams = {
+            from_name: name,
+            message: message,
+            email: email
+        };
+
+        emailjs.send("service_hv6xr4f", "template_fkhbt58", templateParams, "k4ojgcU3PINIi8Prq")
+        .then((response) => {
+            setStatus("Email enviado com sucesso.", response);
+            setName('');
+            setEmail('');
+            setMessage('');
+        }, (err) => {
+            setStatus("Erro ao enviar o email. Tente novamente.", err);
+        });
+    }
 
     return (
         <div className="bg-gray-900 min-h-screen p-10 pt-24">
             <div className="container mx-auto">
                 <h2 className="text-3xl font-bold text-white mb-6">Fale Conosco</h2>
                 <div className="bg-gray-800 rounded-lg shadow-lg p-6">
-                    <form className="space-y-4" onSubmit={handleSubmit}>
+                    <form className="space-y-4" onSubmit={sendEmail}>
                         <div>
                             <label htmlFor="name" className="block text-gray-400">Nome</label>
                             <input 
