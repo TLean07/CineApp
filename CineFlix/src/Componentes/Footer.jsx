@@ -1,5 +1,3 @@
-// Componentes/Footer.jsx
-
 function Footer() {
     return (
       <footer className="bg-black text-white py-6">

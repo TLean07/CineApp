@@ -5,7 +5,7 @@ function Contato() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
-    const [status, setStatus] = useState(''); // Estado para armazenar a mensagem de status
+    const [status, setStatus] = useState('');
 
     function sendEmail(e) {
         e.preventDefault();
